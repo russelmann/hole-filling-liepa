@@ -1,0 +1,28 @@
+{% set name = "hole-filling-liepa" %}
+{% set version = "0.0.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+#git_rev: v0.0.1
+#git_url: https://github.com/russelmann/hole-filling-liepa.git
+  path: .
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - python
+  run:
+    - python
+    - numpy
+
+about:
+  home: https://github.com/russelmann/hole-filling-liepa
+  license: GPL
+  license_family: GPL
+  summary: Hole filling algorithm by P. Liepa.
