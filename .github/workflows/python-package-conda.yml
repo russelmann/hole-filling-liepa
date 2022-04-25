@@ -27,8 +27,7 @@ jobs:
         cd cpp
         mkdir build
         cd build
-        cmake -G "Ninja" ..
-        ninja -j1 install
+        cmake --build ..
     - name: Install module
       run: |
         cd module
