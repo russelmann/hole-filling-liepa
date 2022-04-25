@@ -1,9 +1,7 @@
 import os
 
 import numpy as np
-
-from hole_filling_liepa.hole_filling_liepa import compute_triangle_area, compute_triangle_normal, find_boundary_loops, \
-    read_obj
+from hole_filling_liepa.native import compute_triangle_area, compute_triangle_normal, find_boundary_loops, read_obj
 from test import TEST_DATA_FOLDER
 
 

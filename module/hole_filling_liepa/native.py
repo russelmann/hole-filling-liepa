@@ -107,17 +107,15 @@ def cycle3_origins(b_face: npt.ArrayLike, n: int) -> Tuple[int, int]:
     if i == -1:
         if j == 0 and k == n - 1:
             return n - 1, -1
-        elif j + 1 == k:
+        if j + 1 == k:
             return j, -1
-        else:
-            return -1, -1  # Internal face.
+        return -1, -1  # Internal face.
     if i == 0 and k == n - 1:
         if j == 1:
             return n - 1, 0
-        elif j == n - 2:
+        if j == n - 2:
             return n - 2, n - 1
-        else:
-            raise RuntimeError('Error in boundary loop.')
+        raise RuntimeError('Error in boundary loop.')
     return i, j
 
 
@@ -173,8 +171,8 @@ def fill_hole_liepa(vertices: npt.ArrayLike,
         dot_products = [np.ones(i) for i in range(n - 1, 0, -1)]
         for i in range(n - 2):
             edge_face_normals[1][i] = compute_triangle_normal(vertices[boundary_loop[i:i + 3]])
-        dot_products[1] = np.minimum((edge_face_normals[1] * edge_face_normals[0][1:]).sum(axis=1),
-                                     (edge_face_normals[1] * edge_face_normals[0][:-1]).sum(axis=1))
+        dot_products[1] = np.minimum((edge_face_normals[1][:-1] * edge_face_normals[0][1:-1]).sum(axis=1),
+                                     (edge_face_normals[1][:-1] * edge_face_normals[0][:-2]).sum(axis=1))
         for j in range(3, n):
             for i in range(n - j):
                 max_d, min_area, optimal_m = -float('inf'), float('inf'), None

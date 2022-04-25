@@ -2,7 +2,7 @@ import os
 
 import numpy as np
 
-from hole_filling_liepa.hole_filling_liepa import read_obj, write_obj
+from hole_filling_liepa.native import read_obj, write_obj
 from test import TEST_DATA_FOLDER
 
 

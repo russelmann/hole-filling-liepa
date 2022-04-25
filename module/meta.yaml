@@ -21,6 +21,10 @@ requirements:
     - python
     - numpy
 
+#test:
+#  imports:
+#    - hole-filling-liepa
+
 about:
   home: https://github.com/russelmann/hole-filling-liepa
   license: GPL
