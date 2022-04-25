@@ -22,6 +22,13 @@ jobs:
       run: |
         cd module
         conda env update --file environment.yml --name base
+    - name: Build bindings
+      run: |
+        cd cpp
+        mkdir build
+        cd build
+        cmake -G "Ninja" ..
+        ninja -j1 install
     - name: Install module
       run: |
         cd module
