@@ -40,6 +40,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEA
 add_dependencies( ${PROJECT_NAME} hole_filling_liepa_lib )
 target_link_libraries( ${PROJECT_NAME} PRIVATE hole_filling_liepa_lib )
 
-if ( UNIX AND NOT APPLE)
+if ( UNIX AND NOT APPLE )
 	target_link_libraries( ${PROJECT_NAME} PRIVATE stdc++fs )
 endif()
