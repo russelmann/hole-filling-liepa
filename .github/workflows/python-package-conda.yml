@@ -27,7 +27,8 @@ jobs:
         cd cpp
         mkdir build
         cd build
-        cmake --build ..
+        cmake ..
+        make
     - name: Install module
       run: |
         cd module
