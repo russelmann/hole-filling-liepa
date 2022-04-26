@@ -10,7 +10,8 @@ else()
 	set( Python3_ROOT_DIR "${ROOT_DIR}/../env" )
 endif()
 set( pybind11_DIR "${Python3_ROOT_DIR}/Lib/site-packages/pybind11/share/cmake/pybind11" )
-set( EIGEN_DIR "${Python3_ROOT_DIR}/Library/include/eigen3" )
+set( Eigen3_DIR "${Python3_ROOT_DIR}/Library/share/eigen3/cmake" )
+#set( EIGEN_DIR "${Python3_ROOT_DIR}/Library/include/eigen3" )
 
 # if( MSVC )
 # 	set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -18,6 +19,7 @@ set( EIGEN_DIR "${Python3_ROOT_DIR}/Library/include/eigen3" )
 
 project( hole-filling-liepa )
 
+find_package( Eigen3 REQUIRED )
 add_subdirectory( ${ROOT_DIR}/lib "${CMAKE_CURRENT_BINARY_DIR}/lib" )
 
 find_package( Python3 COMPONENTS Interpreter Development )

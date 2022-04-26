@@ -24,7 +24,7 @@ file( GLOB SOURCES
 
 set ( INCLUDES
 	${ROOT_DIR}/include
-	${EIGEN_DIR}
+	${EIGEN3_INCLUDE_DIR}
 )
 
 set( SOURCES ${HEADERS} ${SOURCES})
