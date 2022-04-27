@@ -7,5 +7,5 @@ setup(
     description='Hole filling algorithm by P. Liepa.',
     packages=find_packages(),
     include_package_data=True,
-    package_data={'hole_filling_liepa': ['*.pyd', '*.so']},
+    package_data={'': ['*.pyd', '*.so']},
 )
