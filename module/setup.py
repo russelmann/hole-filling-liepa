@@ -1,9 +1,10 @@
-import setuptools
+from setuptools import setup, find_packages
 
-setuptools.setup(
+setup(
     name='hole-filling-liepa',
     version='0.0.1',
     author='Ruslan Guseinov',
     description='Hole filling algorithm by P. Liepa.',
-    packages=['hole_filling_liepa']
+    packages=find_packages(),
+    package_data={'hole_filling_liepa': ['*.pyd', '*.so']},
 )
