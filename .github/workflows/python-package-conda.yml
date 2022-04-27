@@ -32,7 +32,7 @@ jobs:
     - name: Install module
       run: |
         cd module
-        pip install -e .
+        pip install .
     - name: Lint with flake8
       run: |
         conda install flake8
