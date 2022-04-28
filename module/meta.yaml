@@ -12,9 +12,12 @@ source:
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
-
+  preserve_egg_dir: True
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv --use-feature=in-tree-build"
+  
 requirements:
+  build:
+    - cmake
   host:
     - python
   run:
