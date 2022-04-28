@@ -124,7 +124,7 @@ setup(
     # package_data={'': ['*.pyd', '*.so']},
     classifiers=[
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+        'License :: OSI Approved :: MIT License'
     ],
     test_suite="test"
 )
