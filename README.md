@@ -13,7 +13,7 @@ https://diglib.eg.org/handle/10.2312/SGP.SGP03.200-206
 pip install hole-filling-liepa
 ```
 
-### Example usage
+### Usage example
 
 ```python
 from hole_filling_liepa.core import fill_hole_liepa, find_boundary_loops
