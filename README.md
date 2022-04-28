@@ -1,4 +1,4 @@
-# hole-filling-liepa
+# Hole Filling Liepa
 
 ![Buidld status](https://github.com/russelmann/hole-filling-liepa/actions/workflows/python-package-conda.yml/badge.svg?event=push)
 
