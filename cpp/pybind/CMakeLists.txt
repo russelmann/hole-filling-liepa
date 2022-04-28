@@ -34,8 +34,8 @@ include_directories(${INCLUDES})
 pybind11_add_module( ${PROJECT_NAME} ${SOURCES} )
 
 # set_target_properties( ${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX d )
-set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG   ${ROOT_DIR}/../module/hole_filling_liepa/ )
-set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${ROOT_DIR}/../module/hole_filling_liepa/ )
+# set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_DEBUG   ${ROOT_DIR}/../module/hole_filling_liepa/ )
+# set_target_properties( ${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY_RELEASE ${ROOT_DIR}/../module/hole_filling_liepa/ )
 
 add_dependencies( ${PROJECT_NAME} hole_filling_liepa_lib )
 target_link_libraries( ${PROJECT_NAME} PRIVATE hole_filling_liepa_lib )
