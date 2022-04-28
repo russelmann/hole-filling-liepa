@@ -27,6 +27,6 @@ requirements:
 
 about:
   home: https://github.com/russelmann/hole-filling-liepa
-  license: GPL
-  license_family: GPL
+  license: MIT
+  license_family: MIT
   summary: Hole filling algorithm by P. Liepa.

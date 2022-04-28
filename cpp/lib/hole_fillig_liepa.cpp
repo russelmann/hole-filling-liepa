@@ -1,19 +1,72 @@
 #include "hole_fillig_liepa.hpp"
 #include <limits>
+#include <set>
 
 using std::vector;
 using std::list;
+using std::set;
+using std::unordered_map;
 
 using Eigen::Vector2i;
 using Eigen::Vector3i;
 using Eigen::Vector3d;
 using Eigen::VectorXi;
 using Eigen::VectorXd;
+using Eigen::MatrixX2i;
 using Eigen::MatrixX3i;
 using Eigen::MatrixX3d;
 
 typedef std::array<int, 2> array2i;
 typedef std::array<int, 3> array3i;
+
+vector<VectorXi> find_boundary_loops(const MatrixX3i faces) {
+	vector<VectorXi> boundary_loops;
+	set<std::pair<int, int>> edges;
+	for (int i = 0; i < faces.rows(); ++i) {
+		for (int j = 0; j < 3; ++j) {
+			int a = faces(i, j);
+			int b = faces(i, (j + 1) % 3);
+			auto adj_edge = edges.find(std::make_pair(b, a));
+			if (adj_edge == edges.end()) {
+				edges.insert(std::make_pair(a, b));
+			}
+			else {
+				edges.erase(adj_edge);
+			}
+		}
+	}
+	unordered_map<int, int> boundary_map;
+	for (auto& edge : edges)
+		boundary_map[edge.first] = edge.second;
+	
+	vector<int> boundary_loop;
+	boundary_loop.reserve(boundary_map.size());
+	int vertex = -1;
+	while (true) {
+		if (vertex == -1) {
+			if (boundary_map.empty())
+				break;
+			vertex = boundary_map.begin()->first;
+			boundary_loop.clear();
+			boundary_loop.push_back(vertex);
+		}
+		else {
+			int next_vertex = boundary_map[vertex];
+			boundary_map.erase(vertex);
+			if (next_vertex == boundary_loop[0]) {
+				std::reverse(boundary_loop.begin(), boundary_loop.end());
+				boundary_loops.emplace_back(Eigen::Map<VectorXi>(boundary_loop.data(), boundary_loop.size()));
+				vertex = -1;
+			}
+			else {
+				boundary_loop.push_back(next_vertex);
+				vertex = next_vertex;
+			}
+		}
+	}
+
+	return boundary_loops;
+}
 
 // Compute area of a triangle based on vertex indices.
 double compute_triangle_area(const MatrixX3d& vertices, int i, int j, int k) {
@@ -25,6 +78,7 @@ Vector3d compute_triangle_normal(const MatrixX3d& vertices, int i, int j, int k)
 	return (vertices.row(j) - vertices.row(i)).cross(vertices.row(k) - vertices.row(i)).normalized();
 }
 
+// Find vertex index origins of face indexed by boundary loop.
 Vector2i cycle3_origins(Vector3i b_face, int n) {
 	std::sort(b_face.data(), b_face.data() + 3);
 	int i = b_face[0];
