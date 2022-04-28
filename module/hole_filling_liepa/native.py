@@ -4,41 +4,7 @@ from typing import List, Tuple
 import numpy as np
 import numpy.typing as npt
 
-
-def read_obj(file_path: str) -> Tuple[npt.ArrayLike, npt.ArrayLike]:
-    """Read an OBJ file.
-
-    :param file_path: File path.
-    :return: NumPy array of vertex coordinates and NumPy array of vertex indices per face.
-    """
-    vertices, faces = deque(), deque()
-    with open(file_path) as fin:
-        for line in fin.readlines():
-            if not line or not (words := line.split()):
-                continue
-            if words[0] == 'v':
-                vertices.append(list(map(float, words[1:])))
-            elif words[0] == 'f':
-                faces.append(list(map(int, words[1:])))
-    return np.array(vertices), np.array(faces) - 1
-
-
-def write_obj(file_path: str,
-              vertices: npt.ArrayLike,
-              faces: npt.ArrayLike):
-    """Write an OBJ file.
-
-    :param file_path: File path.
-    :param vertices: Array of vertices.
-    :param faces: Array of faces.
-    :return: None.
-    """
-    vertices, faces = np.asarray(vertices), np.asarray(faces)
-    with open(file_path, 'wt') as fout:
-        for vertex in vertices:
-            fout.write(f'v {vertex[0]} {vertex[1]} {vertex[2]}\n')
-        for face in faces:
-            fout.write(f'f {1 + face[0]} {1 + face[1]} {1 + face[2]}\n')
+from module.hole_filling_liepa.utils import read_obj, write_obj
 
 
 def find_boundary_loops(faces: npt.ArrayLike) -> List[List[int]]:
