@@ -4,7 +4,7 @@
 
 Implementation of a coarse hole filling algorithm for triangle meshes. Main purpose is a Python package. Can be used as a C++ library as well.
 
-Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SGP.SGP03.200-206), P. Liepa, *Eurographics Symposium on Geometry Processing* 2003.
+Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SGP.SGP03.200-206), P. Liepa, *Eurographics Symposium on Geometry Processing* (2003).
 
 
 <p align="center">
