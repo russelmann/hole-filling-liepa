@@ -7,8 +7,10 @@ Implementation of a coarse hole filling algorithm for triangle meshes. Main purp
 Based on paper *Filling Holes in Meshes*, P. Liepa, Eurographics Symposium on Geometry Processing (2003).
 https://diglib.eg.org/handle/10.2312/SGP.SGP03.200-206
 
-![Bunny with hole](https://github.com/russelmann/hole-filling-liepa/blob/main/media/bunny-hole.png)
-![Patched Bunny](https://github.com/russelmann/hole-filling-liepa/blob/main/media/bunny-patched.png)
+<p align="center">
+  <img width="350" src="https://github.com/russelmann/hole-filling-liepa/blob/main/media/bunny-hole.png" alt="Bunny with hole">
+  <img width="350" src="https://github.com/russelmann/hole-filling-liepa/blob/main/media/bunny-patched.png" alt="Patched Bunny">
+</p>
 
 ### Installation
 
