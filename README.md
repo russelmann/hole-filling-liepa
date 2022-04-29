@@ -14,13 +14,21 @@ Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SG
   <img width="350" src="https://github.com/russelmann/hole-filling-liepa/blob/main/media/bunny-patched.png" alt="Patched Bunny">
 </p>
 
-### Installation
+## Installation
+
+### PyPI
+
+Only Python 3.9, x64 Windows and MacOS 11 are supported at this point.
 
 ```
 pip install hole-filling-liepa
 ```
 
-### Usage example
+### From source
+
+[TODO]
+
+## Usage example
 
 ```python
 from hole_filling_liepa.core import fill_hole_liepa, find_boundary_loops
