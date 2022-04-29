@@ -103,7 +103,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='hole-filling-liepa',
-    version='0.0.1',
+    version='0.0.2',
     author='Ruslan Guseinov',
     description='Hole filling algorithm by P. Liepa',
     url='https://github.com/russelmann/hole-filling-liepa',
