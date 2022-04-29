@@ -160,8 +160,8 @@ Eigen::MatrixX3i fill_hole_liepa(const MatrixX3d& vertices, const MatrixX3i& fac
 		b_faces = faces.unaryExpr([b](int x) { return b[x]; });
 		vector<MatrixX3d> edge_face_normals;
 		edge_face_normals.reserve(n - 2);
-		for (int i = n; i > 1; --i) {
-			edge_face_normals.emplace_back(MatrixX3d::Zero(i, 3));
+		for (int i = n - 1; i > 0; --i) {
+			edge_face_normals.emplace_back(MatrixX3d::Zero(i < n - 1 ? i : n, 3));
 		}
 		// Note: edge_face_normals[n - 1][0] is not needed, it is defined for logical simplicity.
 		for (int f = 0; f < faces.rows(); ++f) {
@@ -192,9 +192,10 @@ Eigen::MatrixX3i fill_hole_liepa(const MatrixX3d& vertices, const MatrixX3i& fac
 		}
 		for (int j = 3; j < n; ++j) {
 			for (int i = 0; i < n - j; ++i) {
-				double max_d = std::numeric_limits<double>::min();
+				double max_d = std::numeric_limits<double>::lowest();
 				double min_area = std::numeric_limits<double>::max();
 				int optimal_m = -1;
+				Vector3d optimal_normal;
 				for (int m = 0; m < j - 1; ++m) {
 					int m1 = j - m - 2;
 					int i1 = i + 1 + m;
@@ -205,17 +206,18 @@ Eigen::MatrixX3i fill_hole_liepa(const MatrixX3d& vertices, const MatrixX3i& fac
 						d = std::min(d, normal.dot(edge_face_normals[0].row(n - 1)));
 					d = std::min(d, dot_products[m][i]);
 					d = std::min(d, dot_products[m1][i1]);
-					edge_face_normals[j - 1].row(i) = normal;
 					double area = areas[m][i] + areas[m1][i1] + compute_triangle_area(vertices, triangle[0], triangle[1], triangle[2]);
 					if (max_d < d || (max_d == d && area < min_area)) {
 						max_d = d;
 						min_area = area;
 						optimal_m = m;
+						optimal_normal = normal;
 					}
 				}
 				dot_products[j - 1][i] = max_d;
 				areas[j - 1][i] = min_area;
 				lambdas[j - 1][i] = i + 1 + optimal_m;
+				edge_face_normals[j - 1].row(i) = optimal_normal;
 			}
 		}
 	}

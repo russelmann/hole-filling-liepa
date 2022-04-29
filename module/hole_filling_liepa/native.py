@@ -124,7 +124,8 @@ def fill_hole_liepa(vertices: npt.ArrayLike,
         for i, index in enumerate(boundary_loop):
             b[index] = i
         b_faces = b[faces]  # Faces expressed via boundary loop indices (-1 if vertex is not boundary in loop).
-        edge_face_normals = [np.zeros((i, 3)) for i in range(n, 1, -1)]  # Indexing matches indexing of weights.
+        # Indexing of edge face normals matches indexing of weights.
+        edge_face_normals = [np.zeros((i if i < n - 1 else n, 3)) for i in range(n - 1, 0, -1)]
         # Note: edge_face_normals[n - 1][0] is not needed, it is defined for logical simplicity.
         for face, b_face in zip(faces, b_faces):
             if sum(b_face == -1) < 2:
@@ -134,14 +135,15 @@ def fill_hole_liepa(vertices: npt.ArrayLike,
                     edge_face_normals[0][i] = normal
                 if j != -1:
                     edge_face_normals[0][j] = normal
-        dot_products = [np.ones(i) for i in range(n - 1, 0, -1)]
         for i in range(n - 2):
             edge_face_normals[1][i] = compute_triangle_normal(vertices[boundary_loop[i:i + 3]])
-        dot_products[1] = np.minimum((edge_face_normals[1][:-1] * edge_face_normals[0][1:-1]).sum(axis=1),
-                                     (edge_face_normals[1][:-1] * edge_face_normals[0][:-2]).sum(axis=1))
+        dot_products = [np.ones(i) for i in range(n - 1, 0, -1)]
+        dot_products[1] = np.minimum((edge_face_normals[1] * edge_face_normals[0][1:-1]).sum(axis=1),
+                                     (edge_face_normals[1] * edge_face_normals[0][:-2]).sum(axis=1))
         for j in range(3, n):
             for i in range(n - j):
-                max_d, min_area, optimal_m = -float('inf'), float('inf'), None
+                max_d, min_area = -float('inf'), float('inf')
+                optimal_m, optimal_normal = None, None
                 for m in range(j - 1):
                     m1, i1 = j - m - 2, i + 1 + m
                     triangle = vertices[boundary_loop[[i, i1, i + j]]]
@@ -150,11 +152,11 @@ def fill_hole_liepa(vertices: npt.ArrayLike,
                     if i == 0 and j == n - 1:
                         d = min(d, np.dot(normal, edge_face_normals[0][n - 1]))
                     d = min(d, dot_products[m][i], dot_products[m1][i1])
-                    edge_face_normals[j - 1][i] = normal
                     area = areas[m][i] + areas[m1][i1] + compute_triangle_area(triangle)
                     if max_d < d or (max_d == d and area < min_area):
-                        max_d, min_area, optimal_m = d, area, m
-                dot_products[j - 1][i], areas[j - 1][i], lambdas[j - 1][i] = max_d, min_area, i + 1 + optimal_m
+                        max_d, min_area, optimal_m, optimal_normal = d, area, m, normal
+                dot_products[j - 1][i], areas[j - 1][i] = max_d, min_area
+                lambdas[j - 1][i], edge_face_normals[j - 1][i] = i + 1 + optimal_m, optimal_normal
     else:
         raise ValueError(f'Method "{method}" is not supported.')
 

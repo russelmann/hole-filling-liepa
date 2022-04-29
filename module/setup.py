@@ -16,7 +16,10 @@ class CMakeExtension(Extension):
 
 
 class CMakeBuild(build_ext):
-    debug: bool = False
+
+    def __init__(self, dist):
+        super().__init__(dist)
+        self.debug = False
 
     def run(self):
         try:
@@ -27,6 +30,7 @@ class CMakeBuild(build_ext):
         cmake_version = LooseVersion(re.search(r'version\s*([\d.]+)', out.decode()).group(1))
         if cmake_version < '3.2.0':
             raise RuntimeError("CMake >= 3.2.0 is required")
+
         for ext in self.extensions:
             self.build_extension(ext)
 
