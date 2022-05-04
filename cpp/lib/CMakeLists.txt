@@ -18,7 +18,6 @@ file( GLOB SOURCES
 
 set ( INCLUDES
 	${ROOT_DIR}/include
-	${EIGEN3_INCLUDE_DIR}
 )
 
 set( SOURCES ${HEADERS} ${SOURCES} )
@@ -26,3 +25,4 @@ set( SOURCES ${HEADERS} ${SOURCES} )
 include_directories( ${INCLUDES} )
 
 add_library( hole_filling_liepa_lib ${SOURCES} )
+target_link_libraries( hole_filling_liepa_lib Eigen3::Eigen )

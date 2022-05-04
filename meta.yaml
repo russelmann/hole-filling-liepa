@@ -3,7 +3,7 @@
 
 package:
   name: "{{ name|lower }}"
-  version: "{{ version }}"
+  version: {{ version }}
 
 source:
 #  path: .
@@ -16,9 +16,13 @@ build:
   
 requirements:
   build:
+    - python
     - cmake
+    - pybind11
+    - eigen
   host:
     - python
+    - pip
   run:
     - python
     - numpy

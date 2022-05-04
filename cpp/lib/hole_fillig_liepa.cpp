@@ -1,5 +1,8 @@
 #include "hole_fillig_liepa.hpp"
 #include <limits>
+#include <array>
+#include <vector>
+#include <list>
 #include <set>
 #include <unordered_map>
 

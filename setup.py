@@ -36,7 +36,7 @@ class CMakeBuild(build_ext):
 
     def build_extension(self, ext):
         ext_dir = os.path.join(os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name))),
-                               'hole_filling_liepa')  # 'igl' -> 'hole_filling_liepa' ?
+                               'hole_filling_liepa')
         cfg = 'Debug' if self.debug else 'Release'
 
         cmake_args = [f'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={ext_dir}',
@@ -103,11 +103,12 @@ class CMakeBuild(build_ext):
 
 setup(
     name='hole-filling-liepa',
-    version='0.0.2',
+    version='0.0.3',
     author='Ruslan Guseinov',
     description='Hole filling algorithm by P. Liepa',
     url='https://github.com/russelmann/hole-filling-liepa',
-    ext_modules=[CMakeExtension('core', 'cpp')],
+    python_requires=">=3.8",
+    ext_modules=[CMakeExtension('hole_filling_liepa', 'cpp')],
     install_requires=['numpy'],
     cmdclass=dict(build_ext=CMakeBuild),
     packages=find_packages(),
