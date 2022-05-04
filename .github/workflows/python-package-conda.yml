@@ -30,7 +30,6 @@ jobs:
         make
     - name: Install module
       run: |
-        cd module
         pip install --use-feature=in-tree-build .
     - name: Lint with flake8
       run: |
