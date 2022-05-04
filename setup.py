@@ -107,7 +107,7 @@ setup(
     author='Ruslan Guseinov',
     description='Hole filling algorithm by P. Liepa',
     url='https://github.com/russelmann/hole-filling-liepa',
-    ext_modules=[CMakeExtension('core', '../cpp')],
+    ext_modules=[CMakeExtension('core', 'cpp')],
     install_requires=['numpy'],
     cmdclass=dict(build_ext=CMakeBuild),
     packages=find_packages(),
