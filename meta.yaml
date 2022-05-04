@@ -1,5 +1,5 @@
 {% set name = "hole-filling-liepa" %}
-{% set version = "0.0.2" %}
+{% set version = "0.0.3" %}
 
 package:
   name: "{{ name|lower }}"
@@ -8,13 +8,11 @@ package:
 source:
 #  git_rev: v0.0.1
 #  git_url: https://github.com/russelmann/hole-filling-liepa.git
-#  url: https://github.com/russelmann/hole-filling-liepa/archive/{{ version }}.tar.gz
+#  url: https://github.com/russelmann/hole-filling-liepa/archive/v{{ version }}.tar.gz
   path: .
 
 build:
   number: 0
-#  preserve_egg_dir: True
-#  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv --use-feature=in-tree-build"
   
 requirements:
   build:
@@ -25,9 +23,9 @@ requirements:
     - python
     - numpy
 
-#test:
-#  imports:
-#    - hole-filling-liepa
+test:
+  imports:
+    - hole-filling-liepa
 
 about:
   home: https://github.com/russelmann/hole-filling-liepa
