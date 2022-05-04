@@ -4,7 +4,7 @@ from typing import List, Tuple
 import numpy as np
 import numpy.typing as npt
 
-from module.hole_filling_liepa.utils import read_obj, write_obj
+from hole_filling_liepa.utils import read_obj, write_obj
 
 
 def find_boundary_loops(faces: npt.ArrayLike) -> List[List[int]]:
