@@ -7,8 +7,6 @@ package:
 
 source:
 #  path: .
-#  git_rev: v0.0.1
-#  git_url: https://github.com/russelmann/hole-filling-liepa.git
   url: https://github.com/russelmann/hole-filling-liepa/archive/v{{ version }}.tar.gz
 
 build:
@@ -16,8 +14,11 @@ build:
   
 requirements:
   build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - python
     - cmake
+    - ninja
     - pybind11
     - eigen
   host:
