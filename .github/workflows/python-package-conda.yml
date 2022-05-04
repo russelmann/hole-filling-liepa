@@ -30,7 +30,7 @@ jobs:
         make
     - name: Install module
       run: |
-        pip install --use-feature=in-tree-build .
+        pip install -e .
     - name: Lint with flake8
       run: |
         conda install flake8
