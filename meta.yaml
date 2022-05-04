@@ -6,10 +6,10 @@ package:
   version: "{{ version }}"
 
 source:
+#  path: .
 #  git_rev: v0.0.1
 #  git_url: https://github.com/russelmann/hole-filling-liepa.git
-#  url: https://github.com/russelmann/hole-filling-liepa/archive/v{{ version }}.tar.gz
-  path: .
+  url: https://github.com/russelmann/hole-filling-liepa/archive/v{{ version }}.tar.gz
 
 build:
   number: 0
@@ -25,7 +25,7 @@ requirements:
 
 test:
   imports:
-    - hole-filling-liepa
+    - hole_filling_liepa
 
 about:
   home: https://github.com/russelmann/hole-filling-liepa
