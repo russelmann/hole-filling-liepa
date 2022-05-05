@@ -48,6 +48,7 @@ class CMakeBuild(build_ext):
         if platform.system() == 'Windows':
             cmake_args.append(f'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{cfg.upper()}={ext_dir}')
             cmake_generator = os.environ.get('CMAKE_GENERATOR', '')
+            print(f'>>> cmake_generator  = {cmake_generator}')
             if cmake_generator != 'NMake Makefiles' and 'Ninja' not in cmake_generator:
                 if sys.maxsize > 2 ** 32:
                     cmake_args += ['-A', 'x64']
@@ -94,7 +95,7 @@ class CMakeBuild(build_ext):
         #     cmake_args += env_cmake_args
         # cmake_args += ['-DCMAKE_OSX_ARCHITECTURES', 'arm64']
         # print(cmake_args)
-
+        print(f'>>> cmake_args = {cmake_args}')
         os.makedirs(self.build_temp, exist_ok=True)
         subprocess.check_call(['cmake', ext.source_dir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
