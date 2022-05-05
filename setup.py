@@ -55,8 +55,8 @@ class CMakeBuild(build_ext):
                     cmake_args += ['-A', 'x64']
                 # build_args += ['--', '/m']
             else:
-                del env['CMAKE_GENERATOR_PLATFORM']
-                del env['CMAKE_GENERATOR_TOOLSET']
+                env.pop('CMAKE_GENERATOR_PLATFORM', None)
+                env.pop('CMAKE_GENERATOR_TOOLSET', None)
         else:
             build_args += ['--', '-j2']
 

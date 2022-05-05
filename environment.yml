@@ -3,6 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9
+  - cmake
   - pybind11
   - numpy                     # 3-clause BSD (https://www.freebsd.org/internal/software-license/)
   - eigen
