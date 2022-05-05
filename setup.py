@@ -45,14 +45,17 @@ class CMakeBuild(build_ext):
         # cmake_args += ['-DDEBUG_TRACE=ON']
         build_args = ['--config', cfg]
 
+        env = os.environ.copy()
+
         if platform.system() == 'Windows':
             cmake_args.append(f'-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_{cfg.upper()}={ext_dir}')
             cmake_generator = os.environ.get('CMAKE_GENERATOR', '')
-            print(f'>>> cmake_generator  = {cmake_generator}')
-            if cmake_generator != 'NMake Makefiles' and 'Ninja' not in cmake_generator:
+            if cmake_generator.startswith('Visual Studio') or cmake_generator == 'Green Hills MULTI':
                 if sys.maxsize > 2 ** 32:
                     cmake_args += ['-A', 'x64']
                 # build_args += ['--', '/m']
+            else:
+                del env['CMAKE_GENERATOR_PLATFORM']
         else:
             build_args += ['--', '-j2']
 
@@ -79,12 +82,11 @@ class CMakeBuild(build_ext):
                 print('Setting cxx compiler to', env_ar)
                 cmake_args.append(f'-DCMAKE_CXX_COMPILER={env_ar}')
 
-        env = os.environ.copy()
         env['CXXFLAGS'] = env.get('CXXFLAGS', '') + f' -DVERSION_INFO=\\"{self.distribution.get_version()}\\"'
 
         env_platform = os.getenv('target_platform', '')
         if env_platform:
-            print('target platfrom', env_platform)
+            print('target platform', env_platform)
             if 'arm' in env_platform:
                 cmake_args.append('-DCMAKE_OSX_ARCHITECTURES=arm64')
 
@@ -95,7 +97,7 @@ class CMakeBuild(build_ext):
         #     cmake_args += env_cmake_args
         # cmake_args += ['-DCMAKE_OSX_ARCHITECTURES', 'arm64']
         # print(cmake_args)
-        print(f'>>> cmake_args = {cmake_args}')
+
         os.makedirs(self.build_temp, exist_ok=True)
         subprocess.check_call(['cmake', ext.source_dir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
