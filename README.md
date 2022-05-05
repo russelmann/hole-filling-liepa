@@ -2,7 +2,9 @@
 
 # Hole Filling Liepa
 
-![Buidld status](https://github.com/russelmann/hole-filling-liepa/actions/workflows/python-package-conda.yml/badge.svg?event=push)
+![Build status](https://github.com/russelmann/hole-filling-liepa/actions/workflows/python-package-conda.yml/badge.svg?event=push)
+![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)
+![MIT License](https://img.shields.io/github/license/russelmann/hole-filling-liepa?color=informational)
 
 Implementation of a coarse hole filling algorithm for triangle meshes. Main purpose is a Python package. Can be used as a C++ library as well.
 
@@ -16,6 +18,10 @@ Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SG
 
 ## Installation
 
+### Conda-forge
+
+*Coming soon*
+
 ### PyPI
 
 Only Python 3.9, x64 Windows and MacOS 11 are supported at this point.
@@ -24,9 +30,12 @@ Only Python 3.9, x64 Windows and MacOS 11 are supported at this point.
 pip install hole-filling-liepa
 ```
 
-### From source
+### From source using Conda
 
-[TODO]
+1. Clone this repository.
+2. Create build environment running script `create-env.sh` in Linux/MacOS or `create-env.bat` in Windows.
+3. Activate build environment. `conda activate ../hfl-env`
+4. Build development version from source. `pip install -e .`
 
 ## Usage example
 
