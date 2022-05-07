@@ -19,18 +19,9 @@ file( GLOB SOURCES
 	${PROJECT_PATH}/*.cpp
 )
 
-set ( INCLUDES
-	${ROOT_DIR}/include
-)
-
-set( SOURCES ${HEADERS} ${SOURCES})
-
-include_directories( ${INCLUDES} )
-
-pybind11_add_module( ${PROJECT_NAME} ${SOURCES} )
+pybind11_add_module( ${PROJECT_NAME} ${SOURCES} ${HEADERS} )
 
 add_dependencies( ${PROJECT_NAME} hole_filling_liepa_lib )
-target_link_libraries( ${PROJECT_NAME} PRIVATE Eigen3::Eigen )
 target_link_libraries( ${PROJECT_NAME} PRIVATE hole_filling_liepa_lib )
 
 if ( UNIX AND NOT APPLE )

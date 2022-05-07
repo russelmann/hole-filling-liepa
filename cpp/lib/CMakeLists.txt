@@ -9,6 +9,7 @@ project( hole_filling_liepa_lib )
 
 file ( GLOB HEADERS
 	${PROJECT_PATH}/*.hpp
+	${ROOT_DIR}/include
 )
 
 file( GLOB SOURCES
@@ -19,9 +20,6 @@ set ( INCLUDES
 	${ROOT_DIR}/include
 )
 
-set( SOURCES ${HEADERS} ${SOURCES} )
-
-include_directories( ${INCLUDES} )
-
-add_library( hole_filling_liepa_lib ${SOURCES} )
+add_library( hole_filling_liepa_lib ${SOURCES} ${HEADERS} )
+target_include_directories( hole_filling_liepa_lib PUBLIC ${INCLUDES} )
 target_link_libraries( hole_filling_liepa_lib Eigen3::Eigen )
