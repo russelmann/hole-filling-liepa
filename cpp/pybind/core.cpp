@@ -5,9 +5,10 @@
 
 #include "hole_fillig_liepa.hpp"
 
-PYBIND11_MAKE_OPAQUE(std::vector<Eigen::VectorXi>);
-
+using namespace hole_filling_liepa;
 namespace py = pybind11;
+
+PYBIND11_MAKE_OPAQUE(std::vector<Eigen::VectorXi>);
 
 PYBIND11_MODULE(core, m) {
 	m.doc() = "Hole filling algorithm by P. Liepa.";
