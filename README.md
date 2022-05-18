@@ -20,7 +20,7 @@ Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SG
 
 ### Conda-forge
 
-*Coming soon*
+[*Coming soon*](https://github.com/conda-forge/staged-recipes/pull/18836)
 
 ### PyPI
 
