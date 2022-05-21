@@ -14,6 +14,7 @@ namespace hole_filling_liepa {
 	using std::set;
 	using std::unordered_map;
 
+	using Eigen::Ref;
 	using Eigen::Vector2i;
 	using Eigen::Vector3i;
 	using Eigen::Vector3d;
@@ -26,7 +27,7 @@ namespace hole_filling_liepa {
 	typedef std::array<int, 2> array2i;
 	typedef std::array<int, 3> array3i;
 
-	vector<VectorXi> find_boundary_loops(const MatrixX3i faces) {
+	vector<VectorXi> find_boundary_loops(const Ref<MatrixX3i> faces) {
 		vector<VectorXi> boundary_loops;
 		set<std::pair<int, int>> edges;
 		for (int i = 0; i < faces.rows(); ++i) {
@@ -108,7 +109,7 @@ namespace hole_filling_liepa {
 		return Vector2i{ i, j };
 	}
 
-	Eigen::MatrixX3i fill_hole_liepa(const MatrixX3d& vertices, const MatrixX3i& faces, const VectorXi& boundary_loop, const std::string& method) {
+	Eigen::MatrixX3i fill_hole_liepa(const Ref<MatrixX3d> vertices, const Ref<MatrixX3i> faces, const Ref<VectorXi> boundary_loop, const std::string& method) {
 		Eigen::MatrixX3i hole_triangles;
 
 		int n = boundary_loop.size();
