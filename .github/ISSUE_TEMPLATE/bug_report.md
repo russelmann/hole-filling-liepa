@@ -25,8 +25,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows 10]
- - Python version [e.g. 3.8]
- - Installation method [e.g. PyPI]
+ - Python version: [e.g. 3.8]
+ - Installation method: [e.g. PyPI]
 
 **Additional context**
 Add any other context about the problem here.
