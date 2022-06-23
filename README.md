@@ -5,6 +5,7 @@
 ![Build status](https://github.com/russelmann/hole-filling-liepa/actions/workflows/python-package-conda.yml/badge.svg?event=push)
 ![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![MIT License](https://img.shields.io/github/license/russelmann/hole-filling-liepa?color=informational)
+![Platforms](https://img.shields.io/conda/pn/conda-forge/hole-filling-liepa)
 
 Implementation of a coarse hole filling algorithm for triangle meshes. Main purpose is a Python package. Can be used as a C++ library as well.
 
