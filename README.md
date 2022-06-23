@@ -18,11 +18,13 @@ Based on paper [Filling Holes in Meshes](https://diglib.eg.org/handle/10.2312/SG
 
 ## Installation
 
-### Conda-forge
+### Conda (recommended)
 
-[*Coming soon*](https://github.com/conda-forge/staged-recipes/pull/18836)
+```
+conda install -c conda-forge hole-filling-liepa
+```
 
-### PyPI
+### PyPI (not recommended)
 
 Only Python 3.9, x64 Windows and MacOS 11 are supported at this point.
 
